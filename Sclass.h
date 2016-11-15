@@ -1,5 +1,5 @@
-#include<iostream.h>
-#include"TObject.h"
+#include <iostream>
+#include "TObject.h"
 
 class Sclass:public TObject{
   private:
