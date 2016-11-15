@@ -1,9 +1,0 @@
-double f1()
-{
-   return ;   
-}
-
-double f2(double a)
-{
-    return a*a;
-}
