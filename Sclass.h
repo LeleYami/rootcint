@@ -3,8 +3,8 @@
 
 class Sclass:public TObject{
   private:
-    Float_h  fX;
-    Float_h  fY;
+    Float_t  fX;
+    Float_t  fY;
   public:
     Sclass()       { fX = fY = 0; }
     void Print() const;
