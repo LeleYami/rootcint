@@ -1,0 +1,24 @@
+CFLAGS=$(shell root-config --cflags)
+LDFLAGS=-L /home/luole/root/root-6.06.06/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -pthread -lm -ldl -rdynamic
+
+all:libSclass.so read_write
+
+read_write:libSclass.so read_write.o
+	g++ -o $@ $^ $(LDFLAGS)
+
+libSclass.so:Sclass.o SclassDict.o
+	g++ -shared -o $@ $^ $(LDFLAGS)
+
+Sclass.cpp:Sclass.h
+
+SclassDict.cpp:Sclass.h LinkDef.h
+	rootcint -f $@ -c $^
+
+%.o:%.cpp
+	g++ -c -fPIC -o $@ $^ $(CFLAGS)
+
+########################################
+# run the command
+########################################
+run_read_write:read_write
+     @LD_LIBRARY_PATH=.:${LD_LIBRARY_PATH} ./read_write
